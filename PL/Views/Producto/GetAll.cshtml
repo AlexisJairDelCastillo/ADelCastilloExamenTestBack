@@ -1,0 +1,50 @@
+﻿@model ML.Producto
+@{
+    ViewData["Title"] = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 style="text-align:center"><strong>Catalogo de Productos</strong></h1>
+        </div>
+    </div>
+
+    <hr />
+
+    @if (Model != null)
+    {
+        <div class="row">
+            <table class="table table-responsive table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>SKU</th>
+                        <th>Producto</th>
+                        <th>Descripcion</th>
+                        <th>Precio $</th>
+                        <th>IdCategoria</th>
+                        <th>Categoria</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (ML.Producto producto in Model.Productos)
+                    {
+                        <tr>
+                            <td>@producto.IdProducto</td>
+                            <td>@producto.NombreProducto</td>
+                            <td>@producto.Descripcion</td>
+                            <td>@producto.Precio</td>
+                            <td>@producto.Categoria.IdCategoria</td>
+                            <td>@producto.Categoria.NombreCategoria</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+
+    }
+</div>

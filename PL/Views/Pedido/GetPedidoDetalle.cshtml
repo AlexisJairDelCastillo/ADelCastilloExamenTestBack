@@ -1,0 +1,50 @@
+﻿@model ML.PedidoDetalle
+@{
+    ViewData["Title"] = "GetPedidoDetalle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 style="text-align:center"><strong>Detalles del Pedido</strong></h1>
+        </div>
+    </div>
+
+    <hr />
+
+    @if (Model != null)
+    {
+        <div class="row">
+            <table class="table table-responsive table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>IdDetalle</th>
+                        <th>IdPedido</th>
+                        <th>IdProducto</th>
+                        <th>Precio $</th>
+                        <th>Cantidad</th>
+                        <th>Total $</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (ML.PedidoDetalle pedidoDetalle in Model.PedidosDetalles)
+                    {
+                        <tr>
+                            <td>@pedidoDetalle.IdDetalle</td>
+                            <td>@pedidoDetalle.Pedido.IdPedido</td>
+                            <td>@pedidoDetalle.Producto.IdProducto</td>
+                            <td>$@pedidoDetalle.Producto.Precio</td>
+                            <td>@pedidoDetalle.Cantidad</td>
+                            <td>$@pedidoDetalle.Pedido.Total</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+
+    }
+</div>

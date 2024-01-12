@@ -1,0 +1,61 @@
+﻿@model ML.Pedido
+@{
+    ViewData["Title"] = "Pedidos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 style="text-align:center"><strong>Tus Compras</strong></h1>
+        </div>
+    </div>
+
+    <hr />
+
+    @if (Model != null)
+    {
+        <div class="row">
+            <table class="table table-responsive table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>IdPedido</th>
+                        <th>IdCliente</th>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>IdProducto</th>
+                        <th>Producto</th>
+                        <th>Precio $</th>
+                        <th>Cantidad</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (ML.Pedido pedido in Model.Pedidos)
+                    {
+                        <tr>
+                            <td>
+                                <a class="btn btn-primary" href="@Url.Action("Pedidos", "Pedido", new { IdPedido = pedido.IdPedido })"></a>
+                            </td>
+                            <td>@pedido.IdPedido</td>
+                            <td>@pedido.Cliente.IdCliente</td>
+                            <td>@pedido.Cliente.Nombre</td>
+                            <td>@pedido.Cliente.Apellidos</td>
+                            <td>@pedido.Producto.IdProducto</td>
+                            <td>@pedido.Producto.NombreProducto</td>
+                            <td>@pedido.Producto.Precio</td>
+                            <td>@pedido.Cantidad</td>
+                            <td>@pedido.Total</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">
+            <p>Aun no tienes compras registradas.</p>
+        </div>
+    }
+</div>
